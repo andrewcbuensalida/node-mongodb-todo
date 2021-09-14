@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # #give permission for everything in the express-app directory
-sudo chmod -R 777 /home/ubuntu/node-mongodb-todo
+sudo chmod -R 777 /home/ubuntu/
 
 # #navigate into our working directory where we have all our github files
-cd /home/ubuntu/node-mongodb-todo
+cd /home/ubuntu/
 
 # #add npm and node to path
 export NVM_DIR="$HOME/.nvm"	
