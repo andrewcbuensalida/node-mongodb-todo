@@ -14,7 +14,7 @@ export NVM_DIR="$HOME/.nvm"
 
 #install node modules
 npm install
-# npm install forever -g
+npm install forever -g
 
 # # install this for puppeteer on node on linux
 # sudo amazon-linux-extras install epel -y
