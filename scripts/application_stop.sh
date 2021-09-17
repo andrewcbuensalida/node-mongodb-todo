@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # #give permission for everything in the express-app directory
-# sudo chmod -R 777 /tmp/todo
+# sudo chmod -R 777 /home/ubuntu/todo
 chmod +x ./scripts/*
 
 # #navigate into our working directory where we have all our github files

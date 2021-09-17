@@ -2,10 +2,10 @@
 
 #give permission for everything in the express-app directory
 # sudo chmod -R 777 /tmp/todo
-chmod +x ./scripts/*
+# chmod +x ./scripts/*
 
 #navigate into our working directory where we have all our github files
-cd /tmp/todo
+cd /home/ubuntu/todo
 
 #add npm and node to path
 export NVM_DIR="$HOME/.nvm"
@@ -14,7 +14,7 @@ export NVM_DIR="$HOME/.nvm"
 
 #install node modules
 npm install
-npm install forever -g
+# npm install forever -g
 
 # # install this for puppeteer on node on linux
 # sudo amazon-linux-extras install epel -y
