@@ -4,10 +4,13 @@ const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Todo = require("./models/todo");
+require("dotenv").config();
 
-mongoose.connect(
-	`mongodb+srv://andrewcbuensalida:${process.env.DBPASS}@graphql-net-ninja-books.iirvr.mongodb.net/todo-mongoose-codedamn-db?retryWrites=true&w=majority`
-);
+mongoose
+	.connect(
+		`mongodb+srv://andrewcbuensalida:${process.env.DBPASS}@graphql-net-ninja-books.iirvr.mongodb.net/todo-mongoose-codedamn-db?retryWrites=true&w=majority`
+	)
+	.then(() => console.log("server connected"));
 
 app.use("/", express.static(path.resolve(__dirname, "assets")));
 
@@ -62,5 +65,5 @@ app.post("/api/create", async (req, res) => {
 });
 
 app.listen(4000, () => {
-	console.log("Server up");
+	console.log(`Listening to 4000`);
 });
