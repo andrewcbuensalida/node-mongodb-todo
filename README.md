@@ -7,7 +7,9 @@ https://docs.aws.amazon.com/codedeploy/latest/userguide/tutorials-on-premises-in
 
 for the ec2 script to install code deploy, yum doesnt work, so exchange with apt-get, thats because the image
 i picked was ubuntu, not amazon linux
-felix yu method works, able to push from vs code to github to ec2, even forever
+felix yu method works, able to push from vs code to github to ec2, even forever. only one forever process running even
+with multiple deploys, which is good. im not sure if it will work if there are major changes though. tweaked application start
+a bit to do forever intead of node
 https://www.youtube.com/watch?v=Buh3GjHPmjo&t=842s
 
 learning a little about linux helped
