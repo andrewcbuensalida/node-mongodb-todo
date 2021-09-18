@@ -1,7 +1,7 @@
 const addButton = document.querySelector(".addButton");
 var input = document.querySelector(".input");
 const container = document.querySelector(".container");
-
+const URL = `ec2-13-228-105-124.ap-southeast-1.compute.amazonaws.com`;
 class item {
 	constructor(itemName) {
 		this.createDiv(itemName);
@@ -40,30 +40,24 @@ class item {
 	async edit(input) {
 		const newInput = prompt("Enter new msg:", input);
 		input.value = newInput;
-		await fetch(
-			"http://ec2-3-1-103-159.ap-southeast-1.compute.amazonaws.com:4000/api/modify",
-			{
-				method: "POST",
-				body: JSON.stringify({ old: input.value, new: newInput }),
-				headers: {
-					"Content-Type": "application/json",
-				},
-			}
-		);
+		await fetch(`http://${URL}:4000/api/modify`, {
+			method: "POST",
+			body: JSON.stringify({ old: input.value, new: newInput }),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
 	}
 
 	async remove(item, value) {
 		container.removeChild(item);
-		await fetch(
-			"http://ec2-3-1-103-159.ap-southeast-1.compute.amazonaws.com:4000/api/delete",
-			{
-				method: "POST",
-				body: JSON.stringify({ record: value }),
-				headers: {
-					"Content-Type": "application/json",
-				},
-			}
-		);
+		await fetch(`http://${URL}:4000/api/delete`, {
+			method: "POST",
+			body: JSON.stringify({ record: value }),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
 	}
 }
 
@@ -71,25 +65,22 @@ async function check() {
 	if (input.value != "") {
 		new item(input.value);
 
-		await fetch(
-			"http://ec2-3-1-103-159.ap-southeast-1.compute.amazonaws.com:4000/api/create",
-			{
-				method: "POST",
-				body: JSON.stringify({ record: input.value }),
-				headers: {
-					"Content-Type": "application/json",
-				},
-			}
-		);
+		await fetch(`http://${URL}:4000/api/create`, {
+			method: "POST",
+			body: JSON.stringify({ record: input.value }),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
 
 		input.value = "";
 	}
 }
 
 async function boot() {
-	const records = await fetch(
-		"http://ec2-3-1-103-159.ap-southeast-1.compute.amazonaws.com:4000/api/get"
-	).then((t) => t.json());
+	const records = await fetch(`http://${URL}:4000/api/get`).then((t) =>
+		t.json()
+	);
 	records.forEach(({ record }) => {
 		new item(record);
 	});
