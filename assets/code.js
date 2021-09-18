@@ -41,7 +41,7 @@ class item {
 		const newInput = prompt("Enter new msg:", input);
 		input.value = newInput;
 		await fetch(
-			"http://ec2-13-214-11-216.ap-southeast-1.compute.amazonaws.com:4000/api/modify",
+			"http://ec2-3-1-103-159.ap-southeast-1.compute.amazonaws.com:4000/api/modify",
 			{
 				method: "POST",
 				body: JSON.stringify({ old: input.value, new: newInput }),
@@ -55,7 +55,7 @@ class item {
 	async remove(item, value) {
 		container.removeChild(item);
 		await fetch(
-			"http://ec2-13-214-11-216.ap-southeast-1.compute.amazonaws.com:4000/api/delete",
+			"http://ec2-3-1-103-159.ap-southeast-1.compute.amazonaws.com:4000/api/delete",
 			{
 				method: "POST",
 				body: JSON.stringify({ record: value }),
@@ -72,7 +72,7 @@ async function check() {
 		new item(input.value);
 
 		await fetch(
-			"http://ec2-13-214-11-216.ap-southeast-1.compute.amazonaws.com:4000/api/create",
+			"http://ec2-3-1-103-159.ap-southeast-1.compute.amazonaws.com:4000/api/create",
 			{
 				method: "POST",
 				body: JSON.stringify({ record: input.value }),
@@ -88,7 +88,7 @@ async function check() {
 
 async function boot() {
 	const records = await fetch(
-		"http://ec2-13-214-11-216.ap-southeast-1.compute.amazonaws.com:4000/api/get"
+		"http://ec2-3-1-103-159.ap-southeast-1.compute.amazonaws.com:4000/api/get"
 	).then((t) => t.json());
 	records.forEach(({ record }) => {
 		new item(record);
