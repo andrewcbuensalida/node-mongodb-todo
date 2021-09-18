@@ -5,4 +5,10 @@ I am for hire. Email me at andrewcbuensalida@gmail.com
 Trying codedeploy scripts setup
 https://docs.aws.amazon.com/codedeploy/latest/userguide/tutorials-on-premises-instance-2-create-sample-revision.html
 
-for the ec2 script to install code deploy, yum doesnt work, so exchange with apt-get
+for the ec2 script to install code deploy, yum doesnt work, so exchange with apt-get, thats because the image
+i picked was ubuntu, not amazon linux
+felix yu method works, able to push from vs code to github to ec2
+https://www.youtube.com/watch?v=Buh3GjHPmjo&t=842s
+
+learning a little about linux helped
+https://www.youtube.com/watch?v=kyt1xAlXITE&list=PLT98CRl2KxKHaKA9-4_I38sLzK134p4GJ&index=10
