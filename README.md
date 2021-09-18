@@ -4,3 +4,5 @@ Tech stack is node, express, mongodb, mongoose, ec2 ubuntu, s3
 I am for hire. Email me at andrewcbuensalida@gmail.com
 Trying codedeploy scripts setup
 https://docs.aws.amazon.com/codedeploy/latest/userguide/tutorials-on-premises-instance-2-create-sample-revision.html
+
+for the ec2 script to install code deploy, yum doesnt work, so exchange with apt-get
