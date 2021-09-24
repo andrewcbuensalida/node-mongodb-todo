@@ -40,7 +40,7 @@ class item {
 	async edit(input) {
 		const newInput = prompt("Enter new msg:", input);
 		input.value = newInput;
-		await fetch(`http://${URL}:4000/api/modify`, {
+		await fetch(`/api/modify`, {
 			method: "POST",
 			body: JSON.stringify({ old: input.value, new: newInput }),
 			headers: {
@@ -51,7 +51,7 @@ class item {
 
 	async remove(item, value) {
 		container.removeChild(item);
-		await fetch(`http://${URL}:4000/api/delete`, {
+		await fetch(`/api/delete`, {
 			method: "POST",
 			body: JSON.stringify({ record: value }),
 			headers: {
@@ -65,7 +65,7 @@ async function check() {
 	if (input.value != "") {
 		new item(input.value);
 
-		await fetch(`http://${URL}:4000/api/create`, {
+		await fetch(`/api/create`, {
 			method: "POST",
 			body: JSON.stringify({ record: input.value }),
 			headers: {
@@ -78,9 +78,7 @@ async function check() {
 }
 
 async function boot() {
-	const records = await fetch(`http://${URL}:4000/api/get`).then((t) =>
-		t.json()
-	);
+	const records = await fetch(`/api/get`).then((t) => t.json());
 	records.forEach(({ record }) => {
 		new item(record);
 	});

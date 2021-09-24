@@ -21,3 +21,6 @@ or ec2 again but with codedeploy but might be overly complicated.
 https://www.youtube.com/watch?v=Buh3GjHPmjo
 next day, alias doesnt point to the url. turns out, just needed to clear chache
 on local browser. best so far is amplify.
+
+trying docker with https://www.youtube.com/watch?v=PgR3Wc4_X1g&list=PLT98CRl2KxKECHltRib03tG8pyKEzwf9t&index=3
+my docker started enabled and active though.
