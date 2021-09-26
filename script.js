@@ -4,10 +4,10 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Todo = require("./models/todo");
 require("dotenv").config();
-const cors = require("cors");
+// const cors = require("cors");
 
 const app = express();
-app.use(cors());
+// app.use(cors());
 
 mongoose
 	.connect(

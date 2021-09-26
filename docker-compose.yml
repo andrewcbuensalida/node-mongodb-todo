@@ -1,0 +1,13 @@
+version: "3"
+services:
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+  todo:
+    build: .
+    image: andrewcbuensalida/todo
+    environment:
+      - PORT=4000

@@ -1,7 +1,7 @@
 const addButton = document.querySelector(".addButton");
 var input = document.querySelector(".input");
 const container = document.querySelector(".container");
-const URL = `ec2-13-228-105-124.ap-southeast-1.compute.amazonaws.com`;
+// const URL = `ec2-13-228-105-124.ap-southeast-1.compute.amazonaws.com`;
 class item {
 	constructor(itemName) {
 		this.createDiv(itemName);
