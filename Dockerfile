@@ -1,14 +1,13 @@
 FROM node:15
 WORKDIR /app
 COPY package.json .
-
-ARG NODE_ENV
-RUN if [ "$NODE_ENV" = "development" ]; \
-        then npm install; \
-        else npm install --only=production; \
-        fi
-
+# ARG NODE_ENV
+# RUN if [ "$NODE_ENV" = "development" ]; \
+#         then npm install; \
+#         else npm install --only=production; \
+#         fi
+RUN npm install
 COPY . ./
-ENV PORT 4000
-EXPOSE $PORT
-CMD ["node", "script.js"]
+# ENV PORT 3000
+# EXPOSE $PORT
+# CMD ["node", "script.js"]

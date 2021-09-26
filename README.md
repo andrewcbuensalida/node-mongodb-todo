@@ -69,7 +69,21 @@ the extra -v /app/node_modules is anonymous and more specific, and therefore is 
 to check inside container, docker exec -it <container id> bash
 to install docker-compose on linux, https://docs.docker.com/compose/install/
 
-for environment variables, have to set it in ec2 by creating .env in ec2, then open .profile, then at the bottom. add set -o allexport; source ~/.env; set +o allexport
+for environment variables, have to set it in ec2 by creating .env in ec2, then open .profile, then at the bottom add, set -o allexport; source ~/.env; set +o allexport
 just watch https://www.youtube.com/watch?v=9zUHg7xjIqQ at 4:13:07
 
 .dockerignore is to ignore files furing the build.
+
+install docker for ubuntu with https://get.docker.com/
+sometimes have to use sudo before a docker command. if thats the case, https://stackoverflow.com/questions/48957195/how-to-fix-docker-got-permission-denied-issue to solve.
+need to install docker-compose on ubuntu too, dont forget. and also docker swarm init.
+
+build in the docker-compose refers to dockerfile. docker-compose overrides dockerfile if --build is used.
+in the docker-compose command, placing of the options(aka flags) is important. the -f flag should be between docker-compose and file name, then up, then -d. when doing docker-compose up without specifying -f, default will run docker-compose.yml, even if there's docker-compose.prod.yml. can add more than one -f as long as indentation is correct.
+docker stack deploy runs the deploy section in docker-compose
+
+before running docker stack deploy (aka docker swarm), image has to be built already.
+running docker-compose up when there's a deploy section in docker-compose file runs the deploy. and cant have container_name if it has a deploy section. also, running deploy via docker-compose up doesnt show stack info, although it does deploy and replicate.
+no such thing as 'any' for restart policy so changed it to always
+dont even need to specify port in docker-compose nodeservice. actually you shouldnt if scaling via deploy replicas.
+cant have restart policy in swarm mode.

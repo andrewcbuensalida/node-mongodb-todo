@@ -6,8 +6,21 @@ services:
       - "80:80"
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
-  todo:
+  todoservice:
+    # container_name: todoName
     build: .
-    image: andrewcbuensalida/todo:1.0
+    image: andrewcbuensalida/todo:latest
     environment:
       - PORT=4000
+      - TEST=from default again and again
+      - DBPASS=${DBPASS}
+    # ports:
+    #   - "4000:4000"
+    command: node script.js
+    deploy:
+      replicas: 5
+      # restart_policy:
+      #   condition: always
+      update_config:
+        parallelism: 2
+        delay: 15s
