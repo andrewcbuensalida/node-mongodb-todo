@@ -8,6 +8,6 @@ COPY package.json .
 #         fi
 RUN npm install
 COPY . ./
-# ENV PORT 3000
-# EXPOSE $PORT
-# CMD ["node", "script.js"]
+ENV PORT 4000
+EXPOSE $PORT
+CMD ["node", "script.js"]

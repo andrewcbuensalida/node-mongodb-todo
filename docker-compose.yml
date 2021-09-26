@@ -9,7 +9,7 @@ services:
   todoservice:
     # container_name: todoName
     build: .
-    image: andrewcbuensalida/todo:latest
+    image: andrewcbuensalida/todo:1.0
     environment:
       - PORT=4000
       - TEST=from default again and again
@@ -17,10 +17,10 @@ services:
     # ports:
     #   - "4000:4000"
     command: node script.js
-    deploy:
-      replicas: 5
-      # restart_policy:
-      #   condition: always
-      update_config:
-        parallelism: 2
-        delay: 15s
+    # deploy:
+    #   replicas: 5
+    #   # restart_policy:
+    #   #   condition: always
+    #   update_config:
+    #     parallelism: 2
+    #     delay: 15s
