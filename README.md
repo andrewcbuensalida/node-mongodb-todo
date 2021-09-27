@@ -89,3 +89,4 @@ dont even need to specify port in docker-compose nodeservice. actually you shoul
 cant have restart policy in swarm mode.
 
 trying this certbot with nginx docker container https://pentacent.medium.com/nginx-and-lets-encrypt-with-docker-in-less-than-5-minutes-b4b8a60d3a71
+DID NOT WORK!
