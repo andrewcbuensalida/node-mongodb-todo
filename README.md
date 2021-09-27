@@ -93,3 +93,8 @@ DID NOT WORK!
 now trying https://www.youtube.com/watch?v=zJPlyjfV4C0
 now trying https://www.youtube.com/watch?v=YKH2RwHqOck to get into nginx container, had to do docker exec -it 2f /bin/sh
 discovered nginx docker container is runnign on alpine linux, which doesnt have apt or yum. now following https://www.cyberciti.biz/faq/how-to-install-letsencrypt-free-ssltls-for-nginx-certificate-on-alpine-linux/ didnt work so now trying https://medium.com/@agusnavce/nginx-server-with-ssl-certificates-with-lets-encrypt-in-docker-670caefc2e31
+this works https://pentacent.medium.com/nginx-and-lets-encrypt-with-docker-in-less-than-5-minutes-b4b8a60d3a71
+just had to follow to file naming convention, and be careful of what branch git you're on, and if the docker image is up to date. the docker-compose doesnt have to be up when running the init-letsencrypt.sh.
+
+all working, https, proxy, except its not cicd. might need watchtower for that, or kubernetes. and paid membership in dockerhub to automate github to dockerhub.
+when restarting ec2 instance, doesnt automatically restart. have to cd into app folder then docker-compose up -d but then its not working. because ip address changes. just have to go to route 53 and update. wait about 1 minute to take effect.
