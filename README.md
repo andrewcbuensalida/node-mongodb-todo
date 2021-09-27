@@ -87,3 +87,5 @@ running docker-compose up when there's a deploy section in docker-compose file r
 no such thing as 'any' for restart policy so changed it to always
 dont even need to specify port in docker-compose nodeservice. actually you shouldnt if scaling via deploy replicas.
 cant have restart policy in swarm mode.
+
+trying this certbot with nginx docker container https://pentacent.medium.com/nginx-and-lets-encrypt-with-docker-in-less-than-5-minutes-b4b8a60d3a71
