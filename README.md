@@ -90,3 +90,6 @@ cant have restart policy in swarm mode.
 
 trying this certbot with nginx docker container https://pentacent.medium.com/nginx-and-lets-encrypt-with-docker-in-less-than-5-minutes-b4b8a60d3a71
 DID NOT WORK!
+now trying https://www.youtube.com/watch?v=zJPlyjfV4C0
+now trying https://www.youtube.com/watch?v=YKH2RwHqOck to get into nginx container, had to do docker exec -it 2f /bin/sh
+discovered nginx docker container is runnign on alpine linux, which doesnt have apt or yum. now following https://www.cyberciti.biz/faq/how-to-install-letsencrypt-free-ssltls-for-nginx-certificate-on-alpine-linux/ didnt work so now trying https://medium.com/@agusnavce/nginx-server-with-ssl-certificates-with-lets-encrypt-in-docker-670caefc2e31
