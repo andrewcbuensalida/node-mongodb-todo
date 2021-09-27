@@ -19,7 +19,7 @@ services:
   todoservice:
     # container_name: todoName
     build: .
-    image: andrewcbuensalida/todo:1.1
+    image: andrewcbuensalida/todo:1.3
     environment:
       - PORT=4000
       - TEST=from default again and again
