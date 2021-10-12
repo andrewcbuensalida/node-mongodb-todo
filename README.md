@@ -108,3 +108,7 @@ have to do the sim link thing sudo ln -s /etc/nginx/sites-available/books.anhone
 setup route 53, then certbot
 sudo login to docker in ec2
 set environment variables then reset docker.
+
+for watchtower (the container that checks docker to see if there are new images and pulls them)
+docker run -d --name watchtower -e WATCHTOWER_TRACE=true -e WATCHTOWER_DEBUG=true -e WATCHTOWER_POLL_INTERVAL=1 -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower todo mongo
+so now workflow is docker build, then docker push. not more github.

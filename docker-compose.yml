@@ -14,6 +14,7 @@ services:
       - mongo
   mongo:
     image: mongo
+    container_name: mongo
     environment:
       - MONGO_INITDB_ROOT_USERNAME=andrewcbuensalida
       - MONGO_INITDB_ROOT_PASSWORD=${DBPW_TODO}
