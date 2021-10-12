@@ -111,4 +111,6 @@ set environment variables then reset docker.
 
 for watchtower (the container that checks docker to see if there are new images and pulls them)
 docker run -d --name watchtower -e WATCHTOWER_TRACE=true -e WATCHTOWER_DEBUG=true -e WATCHTOWER_POLL_INTERVAL=1 -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower todo mongo
-so now workflow is docker build, then docker push. not more github.
+so now workflow is docker build -t andrewcbuensalida/todo:1.0 . , then docker push andrewcbuensalida/todo:1.0 no more github.
+swarm isnt really cicd thing that automatically deploys if gh or dh updates. its more of rolling deployment manually.
+with watchtower, the down time was like 3 seconds.
