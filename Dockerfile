@@ -1,13 +1,12 @@
 FROM node:15
-WORKDIR /app
+WORKDIR /todo
 COPY package.json .
-# ARG NODE_ENV
-# RUN if [ "$NODE_ENV" = "development" ]; \
-#         then npm install; \
-#         else npm install --only=production; \
-#         fi
-RUN npm install
+ARG NODE_ENV
+RUN if [ "$NODE_ENV" = "development" ]; \
+        then npm install; \
+        else npm install --production; \
+        fi
 COPY . ./
-ENV PORT 4000
+ENV PORT 6000
 EXPOSE $PORT
 CMD ["node", "script.js"]

@@ -96,5 +96,9 @@ discovered nginx docker container is runnign on alpine linux, which doesnt have 
 this works https://pentacent.medium.com/nginx-and-lets-encrypt-with-docker-in-less-than-5-minutes-b4b8a60d3a71
 just had to follow to file naming convention, and be careful of what branch git you're on, and if the docker image is up to date. the docker-compose doesnt have to be up when running the init-letsencrypt.sh.
 
-all working, https, proxy, except its not cicd. might need watchtower for that, or kubernetes. and paid membership in dockerhub to automate github to dockerhub.
+all working, https, proxy, except its not cicd. might need watchtower(auto pull from dockerhub to ec2) for that, or kubernetes. and paid membership in dockerhub to automate github to dockerhub.
 when restarting ec2 instance, doesnt automatically restart. have to cd into app folder then docker-compose up -d but then its not working. because ip address changes. just have to go to route 53 and update. wait about 1 minute to take effect.
+
+NOW MIGRATING TO EC2 WITH DOCTORDB
+
+since i dont want to pay $5/month to automate gh to dh, i have to push to gh then push to dh.

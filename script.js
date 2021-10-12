@@ -11,7 +11,7 @@ const app = express();
 
 mongoose
 	.connect(
-		`mongodb+srv://andrewcbuensalida:${process.env.DBPASS}@graphql-net-ninja-books.iirvr.mongodb.net/todo-mongoose-codedamn-db?retryWrites=true&w=majority`
+		`mongodb+srv://andrewcbuensalida:${process.env.DBPW_TODO}@graphql-net-ninja-books.iirvr.mongodb.net/todo-mongoose-codedamn-db?retryWrites=true&w=majority`
 	)
 	.then(() => console.log("server connected"));
 
@@ -67,7 +67,7 @@ app.post("/api/create", async (req, res) => {
 	res.json({ status: "ok" });
 });
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 6000;
 app.listen(PORT, () => {
-	console.log(`Listening to ${PORT} and this is the test ${process.env.TEST}`);
+	console.log(`Listening to ${PORT} `);
 });
