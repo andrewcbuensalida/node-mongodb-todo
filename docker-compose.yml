@@ -6,7 +6,7 @@ services:
     image: andrewcbuensalida/todo:1.0
     environment:
       - PORT=3500
-      - DBPW_TODO=!1Heavenonearth
+      - DBPW_TODO=${DBPW_TODO}
     ports:
       - "3500:3500"
     command: node script.js
@@ -16,7 +16,7 @@ services:
     image: mongo
     environment:
       - MONGO_INITDB_ROOT_USERNAME=andrewcbuensalida
-      - MONGO_INITDB_ROOT_PASSWORD=!1Heavenonearth
+      - MONGO_INITDB_ROOT_PASSWORD=${DBPW_TODO}
     volumes:
       - /tododb:/data/db
 volumes:
