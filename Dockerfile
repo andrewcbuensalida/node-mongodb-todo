@@ -1,5 +1,5 @@
 FROM node:15
-WORKDIR /app
+WORKDIR /todo
 COPY package.json .
 ARG NODE_ENV
 RUN if [ "$NODE_ENV" = "development" ]; \

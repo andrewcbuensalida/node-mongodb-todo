@@ -1,7 +1,7 @@
 version: "3"
 services:
   todoservice:
-    container_name: todoName
+    container_name: todo
     build: .
     image: andrewcbuensalida/todo:1.0
     environment:

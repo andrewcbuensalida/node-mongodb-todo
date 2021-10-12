@@ -102,3 +102,9 @@ when restarting ec2 instance, doesnt automatically restart. have to cd into app 
 NOW MIGRATING TO EC2 WITH DOCTORDB
 
 since i dont want to pay $5/month to automate gh to dh, i have to push to gh then push to dh.
+sudo cp /etc/nginx/sites-available/doctordb.anhonestobserver.com.conf /etc/nginx/sites-available/todo.anhonestobserver.com.conf
+sudo nano /etc/nginx/sites-available/todo.anhonestobserver.com.conf
+have to do the sim link thing sudo ln -s /etc/nginx/sites-available/books.anhonestobserver.com.conf /etc/nginx/sites-enabled/
+setup route 53, then certbot
+sudo login to docker in ec2
+set environment variables then reset docker.
