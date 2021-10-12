@@ -1,3 +1,3 @@
 module.exports = {
-	DBPASS: process.env.DBPASS,
+	DBPW_TODO: process.env.DBPW_TODO,
 };

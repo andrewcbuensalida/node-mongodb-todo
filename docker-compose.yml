@@ -1,22 +1,22 @@
 version: "3"
 services:
   todoservice:
-    # container_name: todoName
+    container_name: todoName
     build: .
     image: andrewcbuensalida/todo:1.0
     environment:
-      - PORT=6000
-      - DBPW_TODO=${DBPW_TODO}
+      - PORT=3500
+      - DBPW_TODO=!1Heavenonearth
     ports:
-      - "6000:6000"
+      - "3500:3500"
     command: node script.js
     depends_on:
       - mongo
   mongo:
     image: mongo
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_INITDB_ROOT_USERNAME=andrewcbuensalida
+      - MONGO_INITDB_ROOT_PASSWORD=!1Heavenonearth
     volumes:
       - /tododb:/data/db
 volumes:

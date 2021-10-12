@@ -1,5 +1,5 @@
 FROM node:15
-WORKDIR /todo
+WORKDIR /app
 COPY package.json .
 ARG NODE_ENV
 RUN if [ "$NODE_ENV" = "development" ]; \
@@ -7,6 +7,6 @@ RUN if [ "$NODE_ENV" = "development" ]; \
         else npm install --production; \
         fi
 COPY . ./
-ENV PORT 6000
-EXPOSE $PORT
+ENV PORT 3500
+# EXPOSE $PORT
 CMD ["node", "script.js"]

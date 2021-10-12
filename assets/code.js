@@ -1,7 +1,6 @@
 const addButton = document.querySelector(".addButton");
 var input = document.querySelector(".input");
 const container = document.querySelector(".container");
-// const URL = `ec2-13-228-105-124.ap-southeast-1.compute.amazonaws.com`;
 class item {
 	constructor(itemName) {
 		this.createDiv(itemName);
@@ -30,7 +29,7 @@ class item {
 		itemBox.appendChild(editButton);
 		itemBox.appendChild(removeButton);
 
-		editButton.addEventListener("click", () => this.edit(input));
+		editButton.addEventListener("click", () => this.edit(input.value));
 
 		removeButton.addEventListener("click", () =>
 			this.remove(itemBox, input.value)
@@ -39,6 +38,9 @@ class item {
 
 	async edit(input) {
 		const newInput = prompt("Enter new msg:", input);
+		if (newInput === null) {
+			return;
+		}
 		input.value = newInput;
 		await fetch(`/api/modify`, {
 			method: "POST",
@@ -83,13 +85,12 @@ async function boot() {
 		new item(record);
 	});
 }
-
 boot();
 
 addButton.addEventListener("click", check);
 
 window.addEventListener("keydown", (e) => {
-	if (e.which == 13) {
+	if (e.key == "Enter") {
 		check();
 	}
 });
