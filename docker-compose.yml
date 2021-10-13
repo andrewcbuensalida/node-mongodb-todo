@@ -12,6 +12,7 @@ services:
     command: node script.js
     depends_on:
       - mongo
+    restart: always
   mongo:
     image: mongo
     container_name: mongo
@@ -20,5 +21,7 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=${DBPW_TODO}
     volumes:
       - /tododb:/data/db
+    restart: always
+
 volumes:
   tododb:
