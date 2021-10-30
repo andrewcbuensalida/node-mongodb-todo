@@ -114,3 +114,8 @@ docker run -d --name watchtower -e WATCHTOWER_TRACE=true -e WATCHTOWER_DEBUG=tru
 so now workflow is docker build -t andrewcbuensalida/todo:1.0 . , then docker push andrewcbuensalida/todo:1.0 no more github.
 swarm isnt really cicd thing that automatically deploys if gh or dh updates. its more of rolling deployment manually.
 with watchtower, the down time was like 3 seconds.
+i dont think watchtower restarts if server gets rebooted.
+
+now trying typescript https://www.youtube.com/watch?v=BwuLxPH8IDs
+to auto compile on save, tsc --init
+then tsc -w
