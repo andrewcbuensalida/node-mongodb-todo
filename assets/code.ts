@@ -1,16 +1,17 @@
-const addButton = document.querySelector(".addButton");
-var input = document.querySelector(".input");
-const container = document.querySelector(".container");
+const addButton = <HTMLButtonElement>document.querySelector(".addButton");
+// can either use the <> to typecast like above, or 'as' like below
+var input = document.querySelector(".input") as HTMLInputElement;
+const container = <HTMLDivElement>document.querySelector(".container");
 class item {
 	constructor(itemName: string) {
 		this.createDiv(itemName);
 	}
 	createDiv(itemName: string) {
-		let input = document.createElement("input");
-		input.value = itemName;
-		input.disabled = true;
-		input.classList.add("item_input");
-		input.type = "text";
+		let item = document.createElement("input");
+		item.value = itemName;
+		item.disabled = true;
+		item.classList.add("item_input");
+		item.type = "text";
 
 		let itemBox = document.createElement("div");
 		itemBox.classList.add("item");
@@ -25,26 +26,26 @@ class item {
 
 		container.appendChild(itemBox);
 
-		itemBox.appendChild(input);
+		itemBox.appendChild(item);
 		itemBox.appendChild(editButton);
 		itemBox.appendChild(removeButton);
 
-		editButton.addEventListener("click", () => this.edit(input.value));
+		editButton.addEventListener("click", () => this.edit(item));
 
 		removeButton.addEventListener("click", () =>
-			this.remove(itemBox, input.value)
+			this.remove(itemBox, item.value)
 		);
 	}
 
-	async edit(input) {
-		const newInput = prompt("Enter new msg:", input);
+	async edit(input: HTMLInputElement) {
+		const newInput = prompt("Enter new msg:", input.value);
 		if (newInput === null) {
 			return;
 		}
 		input.value = newInput;
 		await fetch(`/api/modify`, {
 			method: "POST",
-			body: JSON.stringify({ old: input.value, new: newInput }),
+			body: JSON.stringify({ old: input, new: newInput }),
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -81,7 +82,7 @@ async function check() {
 
 async function boot() {
 	const records = await fetch(`/api/get`).then((t) => t.json());
-	records.forEach(({ record }) => {
+	records.forEach(({ record }: { record: string }) => {
 		new item(record);
 	});
 }

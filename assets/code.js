@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var addButton = document.querySelector(".addButton");
+// can either use the <> to typecast like above, or 'as' like below
 var input = document.querySelector(".input");
 var container = document.querySelector(".container");
 var item = /** @class */ (function () {
@@ -44,11 +45,11 @@ var item = /** @class */ (function () {
     }
     item.prototype.createDiv = function (itemName) {
         var _this = this;
-        var input = document.createElement("input");
-        input.value = itemName;
-        input.disabled = true;
-        input.classList.add("item_input");
-        input.type = "text";
+        var item = document.createElement("input");
+        item.value = itemName;
+        item.disabled = true;
+        item.classList.add("item_input");
+        item.type = "text";
         var itemBox = document.createElement("div");
         itemBox.classList.add("item");
         var editButton = document.createElement("button");
@@ -58,12 +59,12 @@ var item = /** @class */ (function () {
         removeButton.innerHTML = "REMOVE";
         removeButton.classList.add("removeButton");
         container.appendChild(itemBox);
-        itemBox.appendChild(input);
+        itemBox.appendChild(item);
         itemBox.appendChild(editButton);
         itemBox.appendChild(removeButton);
-        editButton.addEventListener("click", function () { return _this.edit(input.value); });
+        editButton.addEventListener("click", function () { return _this.edit(item); });
         removeButton.addEventListener("click", function () {
-            return _this.remove(itemBox, input.value);
+            return _this.remove(itemBox, item.value);
         });
     };
     item.prototype.edit = function (input) {
@@ -72,14 +73,14 @@ var item = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        newInput = prompt("Enter new msg:", input);
+                        newInput = prompt("Enter new msg:", input.value);
                         if (newInput === null) {
                             return [2 /*return*/];
                         }
                         input.value = newInput;
                         return [4 /*yield*/, fetch("/api/modify", {
                                 method: "POST",
-                                body: JSON.stringify({ old: input.value, new: newInput }),
+                                body: JSON.stringify({ old: input, new: newInput }),
                                 headers: {
                                     "Content-Type": "application/json",
                                 },

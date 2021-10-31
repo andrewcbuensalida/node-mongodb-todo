@@ -117,5 +117,5 @@ with watchtower, the down time was like 3 seconds.
 i dont think watchtower restarts if server gets rebooted.
 
 now trying typescript https://www.youtube.com/watch?v=BwuLxPH8IDs
-to auto compile on save, tsc --init
+to auto compile on save and save directory, tsc --init
 then tsc -w
