@@ -11,8 +11,8 @@ const app = express();
 
 mongoose
 	.connect(
-		// `mongodb://andrewcbuensalida:${process.env.DBPW_TODO}@mongo:27017/?authSource=admin` //if in docker
-		`mongodb+srv://andrewcbuensalida:${process.env.DBPW_TODO}@graphql-net-ninja-books.iirvr.mongodb.net/todo-mongoose-codedamn-db?retryWrites=true&w=majority`
+		`mongodb://andrewcbuensalida:${process.env.DBPW_TODO}@mongo:27017/?authSource=admin` //if in docker
+		// `mongodb+srv://andrewcbuensalida:${process.env.DBPW_TODO}@graphql-net-ninja-books.iirvr.mongodb.net/todo-mongoose-codedamn-db?retryWrites=true&w=majority`
 	)
 	.then(() => console.log("db connected"));
 
