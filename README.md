@@ -104,14 +104,14 @@ NOW MIGRATING TO EC2 WITH DOCTORDB
 since i dont want to pay $5/month to automate gh to dh, i have to push to gh then push to dh.
 sudo cp /etc/nginx/sites-available/doctordb.anhonestobserver.com.conf /etc/nginx/sites-available/todo.anhonestobserver.com.conf
 sudo nano /etc/nginx/sites-available/todo.anhonestobserver.com.conf
-have to do the sim link thing sudo ln -s /etc/nginx/sites-available/books.anhonestobserver.com.conf /etc/nginx/sites-enabled/
+have to do the sim link thing sudo ln -s /etc/nginx/sites-available/todo.anhonestobserver.com.conf /etc/nginx/sites-enabled/
 setup route 53, then certbot
 sudo login to docker in ec2
 set environment variables then reset docker.
 
 for watchtower (the container that checks docker to see if there are new images and pulls them)
 docker run -d --name watchtower -e WATCHTOWER_TRACE=true -e WATCHTOWER_DEBUG=true -e WATCHTOWER_POLL_INTERVAL=1 -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower todo mongo
-so now workflow is docker build -t andrewcbuensalida/todo:1.0 . , then docker push andrewcbuensalida/todo:1.0 no more github.
+so now workflow is docker build -t andrewcbuensalida/todo:1.0 . , then docker push andrewcbuensalida/todo:1.0 no more github (unless you want people to see work).
 swarm isnt really cicd thing that automatically deploys if gh or dh updates. its more of rolling deployment manually.
 with watchtower, the down time was like 3 seconds.
 i dont think watchtower restarts if server gets rebooted.
