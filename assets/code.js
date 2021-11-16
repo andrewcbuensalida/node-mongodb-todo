@@ -73,20 +73,20 @@ var item = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        newInput = prompt("Enter new msg:", input.value);
+                        newInput = prompt("Enter new message:", input.value);
                         if (newInput === null) {
                             return [2 /*return*/];
                         }
-                        input.value = newInput;
                         return [4 /*yield*/, fetch("/api/modify", {
                                 method: "POST",
-                                body: JSON.stringify({ old: input, new: newInput }),
+                                body: JSON.stringify({ old: input.value, new: newInput }),
                                 headers: {
                                     "Content-Type": "application/json",
                                 },
                             })];
                     case 1:
                         _a.sent();
+                        input.value = newInput;
                         return [2 /*return*/];
                 }
             });

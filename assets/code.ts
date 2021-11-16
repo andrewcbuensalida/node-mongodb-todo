@@ -38,18 +38,19 @@ class item {
 	}
 
 	async edit(input: HTMLInputElement) {
-		const newInput = prompt("Enter new msg:", input.value);
+		const newInput = prompt("Enter new message:", input.value);
+
 		if (newInput === null) {
 			return;
 		}
-		input.value = newInput;
 		await fetch(`/api/modify`, {
 			method: "POST",
-			body: JSON.stringify({ old: input, new: newInput }),
+			body: JSON.stringify({ old: input.value, new: newInput }),
 			headers: {
 				"Content-Type": "application/json",
 			},
 		});
+		input.value = newInput;
 	}
 
 	async remove(item: HTMLDivElement, value: string) {
