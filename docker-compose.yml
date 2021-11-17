@@ -1,27 +1,43 @@
 version: "3"
 services:
-  todoservice:
-    container_name: todo
-    build: .
-    image: andrewcbuensalida/todo:1.0
-    environment:
-      - PORT=3500
-      - DBPW_TODO=${DBPW_TODO}
-    ports:
-      - "3500:3500"
-    command: node script.js
-    depends_on:
-      - mongo
-    restart: always
-  mongo:
-    image: mongo
-    container_name: mongo
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=andrewcbuensalida
-      - MONGO_INITDB_ROOT_PASSWORD=${DBPW_TODO}
-    volumes:
-      - /tododb:/data/db
-    restart: always
-
+    todoservice:
+        container_name: todo
+        # build: .
+        image: andrewcbuensalida/todo:3.0
+        environment:
+            - PORT=3500
+            - DBPW_TODO=${DBPW_TODO}
+        ports:
+            - "3500:3500"
+        command: node script.js
+        depends_on:
+            - mongo
+        restart: always
+        labels:
+            - "com.centurylinklabs.watchtower.enable=true"
+    mongo:
+        image: mongo
+        container_name: mongo
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=andrewcbuensalida
+            - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+        volumes:
+            - /tododb:/data/db
+        restart: always
+        labels:
+            - "com.centurylinklabs.watchtower.enable=true"
+    watchtower:
+        image: containrrr/watchtower
+        restart: always
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - /etc/timezone:/etc/timezone:ro
+        environment:
+            - WATCHTOWER_CLEANUP=true
+            - WATCHTOWER_LABEL_ENABLE=true
+            - WATCHTOWER_INCLUDE_RESTARTING=true
+            - WATCHTOWER_POLL_INTERVAL=1
+        labels:
+            - "com.centurylinklabs.watchtower.enable=true"
 volumes:
-  tododb:
+    tododb:

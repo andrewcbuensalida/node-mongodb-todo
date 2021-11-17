@@ -69,9 +69,6 @@ the extra -v /app/node_modules is anonymous and more specific, and therefore is 
 to check inside container, docker exec -it <container id> bash
 to install docker-compose on linux, https://docs.docker.com/compose/install/
 
-for environment variables, have to set it in ec2 by creating .env in ec2, then open .profile, then at the bottom add, set -o allexport; source ~/.env; set +o allexport
-just watch https://www.youtube.com/watch?v=9zUHg7xjIqQ at 4:13:07
-
 .dockerignore is to ignore files furing the build.
 
 install docker for ubuntu with https://get.docker.com/
@@ -101,13 +98,47 @@ when restarting ec2 instance, doesnt automatically restart. have to cd into app 
 
 NOW MIGRATING TO EC2 WITH DOCTORDB
 
-since i dont want to pay $5/month to automate gh to dh, i have to push to gh then push to dh.
 sudo cp /etc/nginx/sites-available/doctordb.anhonestobserver.com.conf /etc/nginx/sites-available/todo.anhonestobserver.com.conf
 sudo nano /etc/nginx/sites-available/todo.anhonestobserver.com.conf
+server {
+server_name todo.anhonestobserver.com www.todo.anhonestobserver.com;
+
+    location / {
+        proxy_pass http://localhost:3500/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+
+}
 have to do the sim link thing sudo ln -s /etc/nginx/sites-available/todo.anhonestobserver.com.conf /etc/nginx/sites-enabled/
+check if it's working with sudo systemctl reload nginx
 setup route 53, then certbot
 sudo login to docker in ec2
 set environment variables then reset docker.
+for environment variables, this didnt seem to work. set it in ec2 by opening the hidden .bashrc in ~ directory with sudo nano .bashrc
+then put this at the bottom
+export DBPW_TODO=<passowrd>
+export MONGO_INITDB_ROOT_PASSWORD=<password>
+then sudo source ~/.bashrc
+what worked for environment vairables is having a .env in the same folder as docker-compose.yml
+install docker with sudo apt install docker.io
+then sudo apt install docker-compose
+sudo docker login
+run the todo container and mongo container with:
+create or pull from github docker-compose.yml
+sudo docker-compose up -d
+remove the -d if you want to see the console.logs within the containers.
+to detach from container,
+
+to list open docker containers, docker ps -a
+to kill, docker rm -f <container-name> OR
+to see open ports, sudo ss -tulpn | grep LISTEN
+or ps aux | grep <name of process>
+a means all users, u means the user of the process, x means processes not attached to a terminal
+then to kill process, kill -9 <PID>
 
 for watchtower (the container that checks docker to see if there are new images and pulls them)
 docker run -d --name watchtower -e WATCHTOWER_TRACE=true -e WATCHTOWER_DEBUG=true -e WATCHTOWER_POLL_INTERVAL=1 -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower todo mongo
@@ -115,6 +146,16 @@ so now workflow is docker build -t andrewcbuensalida/todo:1.0 . , then docker pu
 swarm isnt really cicd thing that automatically deploys if gh or dh updates. its more of rolling deployment manually.
 with watchtower, the down time was like 3 seconds.
 i dont think watchtower restarts if server gets rebooted.
+
+to check memory of linux, free -h
+to check hard disk space, df -h
+
+one day trying to build docker on local, says cannot find file and deamon not running. had to delete
+C:\Users[USER]\AppData\Local\Docker
+C:\Users[USER]\AppData\Roaming\Docker
+C:\Users[USER]\AppData\Roaming\Docker Desktop
+https://forums.docker.com/t/docker-failed-to-initialize/111341/13
+and reinstall docker desktop.
 
 now trying typescript https://www.youtube.com/watch?v=BwuLxPH8IDs
 to auto compile on save and save directory, tsc --init
